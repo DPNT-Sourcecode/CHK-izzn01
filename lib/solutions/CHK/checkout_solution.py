@@ -51,7 +51,11 @@ def checkout(skus):
         # handle free y if number of x
         if sku in free_item_map:
             needed_sku, needed_quantity = free_item_map[sku]
-            current_quantity -= items_counter.get(needed_sku, 0) // needed_quantity
+            if needed_sku != sku:
+                current_quantity -= items_counter.get(needed_sku, 0) // needed_quantity
+            else:
+                # Must of the same free item in the cart
+                current_quantity -= items_counter.get(needed_sku, 0) // (needed_quantity + 1)
         
         for price_tier in price_map[sku]:
             quantity_for_cur_price_tier = current_quantity // price_tier[0]
@@ -61,6 +65,7 @@ def checkout(skus):
             current_quantity -= quantity_for_cur_price_tier * price_tier[0]
 
     return checkout_balance
+
 
 
 
