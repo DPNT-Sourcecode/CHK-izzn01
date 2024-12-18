@@ -104,8 +104,9 @@ def checkout(skus):
     group_offers = [
         'Z', 'Y', 'S', 'T', 'X'
     ]
-    
+
     items_counter = {}
+    
     for sku in skus:
         # Handle invalid cases.
         if sku not in price_map:
@@ -118,8 +119,11 @@ def checkout(skus):
 
     checkout_balance = 0
     
-    # calculate price
+    # calculate group offers and adjust prices
 
+    can_claim_offers = sum([items_counter.get(i, 0) for i in group_offers]) // 3
+
+    # calculate price
     for sku, quantity in items_counter.items():
         current_quantity = quantity
 
@@ -140,6 +144,7 @@ def checkout(skus):
             current_quantity -= quantity_for_cur_price_tier * price_tier[0]
 
     return checkout_balance
+
 
 
 
