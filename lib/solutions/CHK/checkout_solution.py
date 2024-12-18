@@ -14,7 +14,7 @@ def checkout(skus):
             'amount': 20
         },
         'B': {
-            'quantity': 3,
+            'quantity': 2,
             'amount': 15
         }
     }
@@ -34,11 +34,12 @@ def checkout(skus):
             checkout_map[sku] += 1
     
     #Apply discount
-    for sku, c_quantity in checkout_map:
+    for sku, c_quantity in checkout_map.items():
         if sku in discount and c_quantity >= discount[sku]["quantity"]:
             checkout_balance = checkout_balance - (c_quantity // discount[sku]["quantity"] * discount[sku]["amount"])
     
     return checkout_balance
+
 
 
 
