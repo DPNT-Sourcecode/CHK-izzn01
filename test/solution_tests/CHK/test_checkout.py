@@ -11,4 +11,5 @@ class TestSuperstore():
     def test_with_discount_fraction_discounts(self):
         assert checkout_solution.checkout(["A", "A", "A", "A", "B", "B", "C"]) == 245
 
-
+    def test_with_invalid_char(self):
+        assert checkout_solution.checkout(["A", "A", "a", "A", "B", "B", "C"]) == -1

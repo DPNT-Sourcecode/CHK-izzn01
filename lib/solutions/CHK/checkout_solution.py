@@ -23,7 +23,7 @@ def checkout(skus):
     checkout_map = {}
     for sku in skus:
         # Handle invalid cases.
-        if sku not in skus:
+        if sku not in price_map:
             return -1
         
         checkout_balance += price_map[sku]
@@ -39,8 +39,5 @@ def checkout(skus):
             checkout_balance = checkout_balance - (c_quantity // discount[sku]["quantity"] * discount[sku]["amount"])
     
     return checkout_balance
-
-
-
 
 
