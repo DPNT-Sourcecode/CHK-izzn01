@@ -126,7 +126,10 @@ def checkout(skus):
 
     total_offer_claimed = can_claim_offers * 3
     for item in group_offers:
-        if total_offer_claimed == can_claim_offers * 3:
+        if total_offer_claimed == 0:
+            break
+        
+        if item in items_counter:
             s_value = min(items_counter[item], total_offer_claimed)
             items_counter[item] = items_counter[item] - s_value
             total_offer_claimed -= s_value
@@ -152,6 +155,7 @@ def checkout(skus):
             current_quantity -= quantity_for_cur_price_tier * price_tier[0]
 
     return checkout_balance
+
 
 
 
