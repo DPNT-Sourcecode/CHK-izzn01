@@ -29,3 +29,11 @@ class TestSuperstore():
     def test_multi_price_model_with_free_self_item_unclaimed(self):
         assert checkout_solution.checkout(["A", "A", "A", "A", "A", "A", "A", "A", "B", "B", "C", "F", "F"]) == 415
 
+    def test_long_list(self):
+        l = [
+            "I": 35,
+            "H": 10,
+            "G": 20
+        ]
+        for i in l:
+            assert checkout_solution.checkout(l[i][0]) == l[i][1]
