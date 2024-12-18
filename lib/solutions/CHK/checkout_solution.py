@@ -1,5 +1,3 @@
-
-
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
@@ -41,6 +39,7 @@ def checkout(skus):
             checkout_balance = checkout_balance - (c_quantity // discount[sku]["quantity"] * discount[sku]["amount"])
     
     return checkout_balance
+
 
 
 
