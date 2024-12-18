@@ -22,3 +22,10 @@ class TestSuperstore():
     
     def test_multi_price_model_with_multiple_and_free_application(self):
         assert checkout_solution.checkout(["A", "A", "A", "A", "A", "A", "A", "A", "B", "B", "C", "E", "E"]) == 460
+
+    def test_multi_price_model_with_free_self_item(self):
+        assert checkout_solution.checkout(["A", "A", "A", "A", "A", "A", "A", "A", "B", "B", "C", "F", "F", "F"]) == 415
+    
+    def test_multi_price_model_with_free_self_item_unclaimed(self):
+        assert checkout_solution.checkout(["A", "A", "A", "A", "A", "A", "A", "A", "B", "B", "C", "F", "F"]) == 415
+
