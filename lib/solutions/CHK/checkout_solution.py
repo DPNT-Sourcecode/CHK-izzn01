@@ -100,6 +100,11 @@ def checkout(skus):
         'U': ('U', 3),
     }
 
+    # ordered by price
+    group_offers = [
+        'Z', 'Y', 'S', 'T', 'X'
+    ]
+    
     items_counter = {}
     for sku in skus:
         # Handle invalid cases.
@@ -135,6 +140,7 @@ def checkout(skus):
             current_quantity -= quantity_for_cur_price_tier * price_tier[0]
 
     return checkout_balance
+
 
 
 
