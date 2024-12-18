@@ -2,42 +2,61 @@
 # skus = unicode string
 def checkout(skus):
     price_map = {
-        'A': 50,
-        'B': 30,
-        'C': 20,
-        'D': 15
+        'A': [
+            (5, 200,),
+            (3, 130,),
+            (1, 50,),
+        ],
+        'B': [
+            (2, 45,),
+            (1, 30,)
+        ],
+        'C': [
+            (1, 20)
+        ],
+        'D': [
+            (1, 15)
+        ],
+        'E': [
+            (1, 40)
+        ]
     }
 
-    discount = {
-        'A': {
-            'quantity': 3,
-            'amount': 20
-        },
-        'B': {
-            'quantity': 2,
-            'amount': 15
-        }
+    free_item_map = {
+        'B': ('E', 2)
     }
 
-    checkout_balance = 0
-    checkout_map = {}
+    items_counter = {}
     for sku in skus:
         # Handle invalid cases.
         if sku not in price_map:
             return -1
         
-        checkout_balance += price_map[sku]
-
-        if sku not in checkout_map:
-            checkout_map[sku] = 1
+        if sku not in items_counter:
+            items_counter[sku] = 1
         else:
-            checkout_map[sku] += 1
+            items_counter[sku] += 1
+
+    checkout_balance = 0
     
-    #Apply discount
-    for sku, c_quantity in checkout_map.items():
-        if sku in discount and c_quantity >= discount[sku]["quantity"]:
-            checkout_balance = checkout_balance - (c_quantity // discount[sku]["quantity"] * discount[sku]["amount"])
-    
+    # calculate price
+
+    for sku, quantity in items_counter.items():
+        current_quantity = quantity
+
+        # handle free y if number of x
+        if sku in free_item_map:
+            needed_sku, needed_quantity = free_item_map[sku]
+            current_quantity -= items_counter.get(needed_sku, 0) // needed_quantity
+        
+        for price_tier in price_map[sku]:
+            quantity_for_cur_price_tier = current_quantity // price_tier[0]
+            checkout_balance += price_tier[1] * quantity_for_cur_price_tier
+            
+            # calculate remaining quantity
+            current_quantity -= quantity_for_cur_price_tier * price_tier[0]
+
     return checkout_balance
+
 
 
