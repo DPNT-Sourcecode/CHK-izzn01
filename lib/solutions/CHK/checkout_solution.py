@@ -19,11 +19,15 @@ def checkout(skus):
         ],
         'E': [
             (1, 40)
+        ],
+        'F': [
+            (1, 10)
         ]
     }
 
     free_item_map = {
-        'B': ('E', 2)
+        'B': ('E', 2,),
+        'F': ('F', 1,)
     }
 
     items_counter = {}
@@ -57,5 +61,6 @@ def checkout(skus):
             current_quantity -= quantity_for_cur_price_tier * price_tier[0]
 
     return checkout_balance
+
 
 
