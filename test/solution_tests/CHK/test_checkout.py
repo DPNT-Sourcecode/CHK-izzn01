@@ -37,3 +37,9 @@ class TestSuperstore():
         ]
         for i in l:
             assert checkout_solution.checkout(i[0]) == i[1]
+
+    def test_group_offer(self):
+        assert checkout_solution.checkout(["A", "A", "A", "X", "Y", "Z"]) == 175
+
+    def test_group_offer_higher_value(self):
+        assert checkout_solution.checkout(["A", "A", "A", "X", "Y", "Z", "Z", "Y", "Z", "Z"]) == 237
