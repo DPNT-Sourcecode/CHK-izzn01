@@ -31,9 +31,9 @@ class TestSuperstore():
 
     def test_long_list(self):
         l = [
-            "I": 35,
-            "H": 10,
-            "G": 20
+            ("I", 35),
+            ("H", 10),
+            ("G", 20)
         ]
         for i in l:
-            assert checkout_solution.checkout(l[i][0]) == l[i][1]
+            assert checkout_solution.checkout(i[0]) == i[1]
