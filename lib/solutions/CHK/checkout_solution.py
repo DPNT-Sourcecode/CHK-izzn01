@@ -38,8 +38,8 @@ def checkout(skus):
             (1, 60)
         ],
         'K': [
-            (2, 150),
-            (1, 80)
+            (2, 120),
+            (1, 70)
         ],
         'L': [
             (1, 90)
@@ -135,6 +135,7 @@ def checkout(skus):
             current_quantity -= quantity_for_cur_price_tier * price_tier[0]
 
     return checkout_balance
+
 
 
 
