@@ -13,3 +13,9 @@ class TestSuperstore():
 
     def test_with_invalid_char(self):
         assert checkout_solution.checkout(["A", "A", "a", "A", "B", "B", "C"]) == -1
+    
+    def test_multi_price_model_with_single_application(self):
+        assert checkout_solution.checkout(["A", "A", "A", "A", "A", "B", "B", "C"]) == 265
+    
+    def test_multi_price_model_with_multiple_application(self):
+        assert checkout_solution.checkout(["A", "A", "A", "A", "A", "A", "A", "A", "B", "B", "C"]) == 395
