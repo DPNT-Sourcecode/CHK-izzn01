@@ -59,4 +59,3 @@ def checkout(skus):
     return checkout_balance
 
 
-
